@@ -4,7 +4,8 @@
         <title>Umrechner</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="style.css" type="text/css">
-        <script src="sw.js" charset="utf-8"></script>
+        <script src="calc.js" charset="utf-8"></script>
+        <link rel="manifest" href="manifest.json" />
     </head>
     <body>
         <header>
@@ -29,4 +30,15 @@
 
         <div id="display">Ausgabe</div>
     </body>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker
+                .register("/sw.js")
+                .then(res => console.log("service worker registered"))
+                .catch(err => console.log("service worker not registered", err))
+        })
+        }
+    </script>
 </html>
